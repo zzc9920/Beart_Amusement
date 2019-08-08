@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/beart_menu_bottom_home"
+        android:icon="@mipmap/beart_home"
+        android:title="首页" />
+    <item
+        android:id="@+id/beart_menu_bottom_classification"
+        android:icon="@mipmap/beart_classification"
+        android:title="分类" />
+    <item
+        android:id="@+id/beart_menu_bottom_notice"
+        android:icon="@mipmap/beart_notice"
+        android:title="消息" />
+    <item
+        android:id="@+id/beart_menu_bottom_my"
+        android:icon="@mipmap/beart_my"
+        android:title="我的" />
+</menu>
