@@ -60,7 +60,7 @@ public class Beart_RecommendIndexFragment extends Beart_BaseFragment implements 
     }
 
     private void bindAdapter() {
-        beart_ViewPager.setAdapter(new Beart_FragmentAdapter(getFragmentManager(), beart_listFragments));
+        beart_ViewPager.setAdapter(new Beart_FragmentAdapter(getChildFragmentManager(), beart_listFragments));
     }
 
     private void bindEvent() {

@@ -1,5 +1,6 @@
 package online.beartreasure.beart_amusement.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -23,6 +25,8 @@ import cn.smssdk.SMSSDK;
 import okhttp3.Call;
 import online.beartreasure.beart_amusement.R;
 import online.beartreasure.beart_amusement.base.Beart_BaseActivity;
+import online.beartreasure.beart_amusement.bean.Beart_Code;
+import online.beartreasure.beart_amusement.utils.Beart_NetworkInterfaceSatinApi;
 
 public class RegisterActivity extends Beart_BaseActivity implements View.OnClickListener {
     private EditText beart_etusername_register, beart_etverificationcode_register, beart_etpasswrod_register;
@@ -30,6 +34,7 @@ public class RegisterActivity extends Beart_BaseActivity implements View.OnClick
     private int beart_Verification = 60;
     private EventHandler eventHandler;
     private String beart_verification, beart_username, beart_password;
+    private Beart_Code beart_code;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,31 +105,23 @@ public class RegisterActivity extends Beart_BaseActivity implements View.OnClick
                 if (!TextUtils.isEmpty(beart_etusername_register.getText().toString())) {
                     boolean phoneverificationcode = beartisMobileNO(beart_etusername_register.getText().toString());
                     if (phoneverificationcode) {
-                        beart_verification = beart_etusername_register.getText().toString().trim();
-                        SMSSDK.getVerificationCode("86", beart_verification);
+                        beart_username = beart_etusername_register.getText().toString().trim();
+                        Log.e(TAG, "onClick: " + beart_username);
+                        SMSSDK.getVerificationCode("86", beart_username);
                         beart_buttonverificationcode_register.setEnabled(false);
                         startcountDown();
+                    } else {
+                        beartToast("手机号或者邮箱输入错误请检查");
                     }
                 }
                 break;
             case R.id.beart_buttonlogin_register:
                 if (!TextUtils.isEmpty(beart_etverificationcode_register.getText().toString())) {
                     if (!TextUtils.isEmpty(beart_etpasswrod_register.getText().toString())) {
-                        beart_username = beart_etusername_register.getText().toString();
+                        beart_verification = beart_etverificationcode_register.getText().toString();
                         beart_password = beart_etpasswrod_register.getText().toString();
-                        if (!TextUtils.isEmpty(beart_username) && !TextUtils.isEmpty(beart_password)) {
-                            OkHttpUtils.post().url("http://192.168.1.75:8888/jsp/AppRegServlet").addParams("username", beart_username).addParams("userpwd", beart_password).build().execute(new StringCallback() {
-                                @Override
-                                public void onError(Call call, Exception e, int id) {
-
-                                }
-
-                                @Override
-                                public void onResponse(String response, int id) {
-                                    Log.e(TAG, "onResponse: " + response);
-                                }
-                            });
-                        }
+                        SMSSDK.submitVerificationCode("86", beart_username, beart_verification);
+                        Log.e(TAG, "onClick: " + beart_username + beart_verification);
                     } else {
                         beartToast("账号密码不能为空或者错误");
                     }
@@ -146,7 +143,36 @@ public class RegisterActivity extends Beart_BaseActivity implements View.OnClick
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(RegisterActivity.this, "验证成功", Toast.LENGTH_SHORT).show();
+//                                T.showAnimToast(RegisterActivity.this, "验证成功");
+                                if (!TextUtils.isEmpty(beart_username) && !TextUtils.isEmpty(beart_password)) {
+
+                                    OkHttpUtils.post().url(Beart_NetworkInterfaceSatinApi.Beart_REGITER).addParams("username", beart_username).addParams("userpwd", beart_password).build().execute(new StringCallback() {
+                                        @Override
+                                        public void onError(Call call, Exception e, int id) {
+
+                                        }
+
+                                        @Override
+                                        public void onResponse(String response, int id) {
+                                            Log.e(TAG, "onResponse: " + response);
+                                            Gson gson = new Gson();
+                                            beart_code = gson.fromJson(response, Beart_Code.class);
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    if (beart_code.getCode().equals("200")) {
+//                                                        T.showAnimSuccessToast(RegisterActivity.this, "注册成功");
+                                                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                                    } else if (beart_code.getCode().equals("500")) {
+//                                                        T.showAnimErrorToast(RegisterActivity.this, "账号已冻结");
+                                                    } else {
+//                                                        T.showAnimErrorToast(RegisterActivity.this, "账号或者密码错误");
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
                             }
                         });
 
@@ -155,7 +181,7 @@ public class RegisterActivity extends Beart_BaseActivity implements View.OnClick
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(RegisterActivity.this, "验证码已发送", Toast.LENGTH_SHORT).show();
+//                                T.showAnimSuccessToast(RegisterActivity.this, "验证码已发送");
                             }
                         });
                     } else if (event == SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES) {
@@ -166,12 +192,14 @@ public class RegisterActivity extends Beart_BaseActivity implements View.OnClick
                     Throwable throwable = (Throwable) data;
                     try {
                         JSONObject obj = new JSONObject(throwable.getMessage());
+                        Log.e(TAG, "afterEvent: " + throwable.getMessage());
                         final String des = obj.optString("detail");
                         if (!TextUtils.isEmpty(des)) {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(RegisterActivity.this, "验证码错误", Toast.LENGTH_SHORT).show();
+//                                    T.showAnimErrorToast(RegisterActivity.this, "验证码错误");
+
                                 }
                             });
                         }

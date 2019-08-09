@@ -17,7 +17,7 @@ public class Beart_ClassificationFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        beart_view = inflater.inflate(R.layout.activity_main, container, false);
+        beart_view = inflater.inflate(R.layout.activity_login, container, false);
         return beart_view;
     }
 

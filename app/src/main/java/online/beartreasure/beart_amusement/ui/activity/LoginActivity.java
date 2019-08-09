@@ -16,6 +16,7 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import okhttp3.Call;
 import online.beartreasure.beart_amusement.R;
 import online.beartreasure.beart_amusement.base.Beart_BaseActivity;
+import online.beartreasure.beart_amusement.utils.Beart_NetworkInterfaceSatinApi;
 
 public class LoginActivity extends Beart_BaseActivity implements View.OnClickListener {
     private EditText beart_etusername_login, beart_etpasswrod_login;
@@ -62,10 +63,10 @@ public class LoginActivity extends Beart_BaseActivity implements View.OnClickLis
                         beart_username = beart_etusername_login.getText().toString();
                         beart_password = beart_etpasswrod_login.getText().toString();
                         if (!TextUtils.isEmpty(beart_username) && !TextUtils.isEmpty(beart_password)) {
-                            OkHttpUtils.post().url("http://192.168.1.75:8888/jsp/AppLoginServlet").addParams("username", beart_username).addParams("userpwd", beart_password).build().execute(new StringCallback() {
+                            OkHttpUtils.post().url(Beart_NetworkInterfaceSatinApi.Beart_LOGINULR).addParams("username", beart_username).addParams("userpwd", beart_password).build().execute(new StringCallback() {
                                 @Override
                                 public void onError(Call call, Exception e, int id) {
-                                    Log.e(TAG, "onResponse: "+e.getMessage());
+                                    Log.e(TAG, "onResponse: " + e.getMessage());
                                 }
 
                                 @Override
