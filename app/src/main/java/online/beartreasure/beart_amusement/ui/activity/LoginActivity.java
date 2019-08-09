@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -22,6 +23,7 @@ public class LoginActivity extends Beart_BaseActivity implements View.OnClickLis
     private EditText beart_etusername_login, beart_etpasswrod_login;
     private Button beart_buttonlogin_login;
     private String beart_username, beart_password;
+    private TextView tv1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class LoginActivity extends Beart_BaseActivity implements View.OnClickLis
         beart_etusername_login = findViewById(R.id.beart_etusername_login);
         beart_etpasswrod_login = findViewById(R.id.beart_etpasswrod_login);
         beart_buttonlogin_login = findViewById(R.id.beart_buttonlogin_login);
+        tv1=findViewById(R.id.tv1);
     }
 
     @Override
@@ -49,9 +52,12 @@ public class LoginActivity extends Beart_BaseActivity implements View.OnClickLis
 
     }
 
+
+
     @Override
     public void settingView() {
         beart_buttonlogin_login.setOnClickListener(this);
+        tv1.setOnClickListener(this);
     }
 
     @Override
@@ -82,6 +88,9 @@ public class LoginActivity extends Beart_BaseActivity implements View.OnClickLis
                 } else {
                     beartToast("账号不能为空");
                 }
+                break;
+            case R.id.tv1:
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
                 break;
         }
     }

@@ -9,15 +9,53 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <ImageView
-            android:id="@+id/beart_imageview_login"
-            android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:src="@mipmap/logbcakground" />
+            android:gravity="bottom">
+            <TextView
+                android:id="@+id/tv1"
+                android:gravity="left"
+                android:text="注册"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="top"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <TextView
+                android:gravity="center"
+                android:textSize="20dp"
+                android:text="账户登录"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="bottom">
+            <TextView
+                android:gravity="right"
+                android:text="X"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+        <ImageView
+            android:background="@mipmap/ic_launcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <LinearLayout
@@ -28,55 +66,134 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/login"
-                android:textSize="20sp"
-                tools:ignore="RtlHardcoded" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <EditText
+                    android:hint="请输入账户或手机号"
+                    android:background="@null"
                     android:id="@+id/beart_etusername_login"
-                    android:layout_width="350dp"
-                    android:layout_height="50dp"
+                    android:layout_width="303dp"
+                    android:layout_height="60dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="50dp"
-                    android:background="@drawable/beart_edittextfillet_style" />
+                    android:drawableLeft="@mipmap/username"
+                    android:drawablePadding="10sp"/>
+
+                <View
+                    android:layout_centerHorizontal="true"
+                    android:background="#CCC"
+                    android:layout_below="@+id/beart_etusername_login"
+                    android:layout_width="300dp"
+                    android:layout_height="1dp">
+                </View>
 
                 <EditText
+                    android:drawableLeft="@mipmap/password"
+                    android:hint="请输入密码"
+                    android:background="@null"
                     android:id="@+id/beart_etpasswrod_login"
-                    android:layout_width="350dp"
-                    android:layout_height="50dp"
+                    android:layout_width="303dp"
+                    android:layout_height="65dp"
                     android:layout_below="@id/beart_etusername_login"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/beart_edittextfillet_style" />
-
+                    android:drawablePadding="10sp"
+                    android:layout_marginTop="20dp" />
+                <View
+                    android:layout_centerHorizontal="true"
+                    android:background="#CCC"
+                    android:layout_below="@+id/beart_etpasswrod_login"
+                    android:layout_width="300dp"
+                    android:layout_height="1dp">
+                </View>
                 <Button
                     android:id="@+id/beart_buttonlogin_login"
-                    android:layout_width="200dp"
+                    android:layout_width="320dp"
                     android:layout_height="50dp"
                     android:layout_below="@id/beart_etpasswrod_login"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/beart_edittextfillet_style"
+                    android:layout_marginTop="25dp"
+                    android:background="@mipmap/login"
                     android:text="@string/login" />
+                <TextView
+                    android:textSize="17dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/beart_buttonlogin_login"
+                    android:text="忘记密码?"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
             </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="3"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/LinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="bottom">
+                    <View
+                        android:layout_weight="1"
+                        android:background="#ccc"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp">
+                    </View>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="bottom">
+                    <TextView
+                        android:gravity="center"
+                        android:text="其它登录"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <View
+                        android:background="#ccc"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp">
+                    </View>
+                </LinearLayout>
+                <RelativeLayout
+                    android:background="@mipmap/bg1"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_marginLeft="80dp"
+                        android:layout_alignParentLeft="true"
+                        android:background="@mipmap/wxicon"
+                        android:id="@+id/img1"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp" />
 
+                    <ImageView
+                        android:id="@+id/img2"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_alignTop="@+id/img1"
+                        android:layout_centerHorizontal="true"
+                        android:background="@mipmap/qqicon" />
+                    <ImageView
+                        android:layout_marginRight="80dp"
+                        android:layout_alignParentRight="true"
+                        android:padding="10dp"
+                        android:background="@mipmap/wbicon"
+                        android:id="@+id/img3"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp" />
+                </RelativeLayout>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
