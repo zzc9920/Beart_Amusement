@@ -13,8 +13,4 @@
         android:id="@+id/action_menu_image"
         android:icon="@mipmap/beart_image"
         android:title="图片" />
-    <item
-        android:id="@+id/action_menu_writtenword"
-        android:icon="@mipmap/beart_writtenwords"
-        android:title="文字" />
 </menu>

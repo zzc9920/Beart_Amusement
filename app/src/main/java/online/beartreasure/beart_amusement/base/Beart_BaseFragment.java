@@ -56,49 +56,6 @@ public abstract class Beart_BaseFragment extends Fragment {
         Log.e("onActivityCreated", "onActivityCreated");
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.e("onStart", "onStart");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.e("onResume", "onResume");
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.e("onPause", "onPause");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Log.e("onStop", "onStop");
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        initDatas();
-        Log.e("onDestroyView", "onDestroyView");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.e("onDestroy", "onDestroy");
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        Log.e("onDetach", "onDetach");
-    }
-
     /**
      * 获取布局
      *

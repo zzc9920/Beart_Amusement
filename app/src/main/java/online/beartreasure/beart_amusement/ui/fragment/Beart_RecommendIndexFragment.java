@@ -50,7 +50,6 @@ public class Beart_RecommendIndexFragment extends Beart_BaseFragment implements 
         beart_listFragments.add(new Beart_RecommendFragment());
         beart_listFragments.add(new Beart_VideoFragment());
         beart_listFragments.add(new Beart_ImageFragment());
-        beart_listFragments.add(new Beart_WrittenwordFragment());
     }
 
     @Override
@@ -95,9 +94,6 @@ public class Beart_RecommendIndexFragment extends Beart_BaseFragment implements 
                 break;
             case R.id.action_menu_image:
                 beart_ViewPager.setCurrentItem(2);
-                break;
-            case R.id.action_menu_writtenword:
-                beart_ViewPager.setCurrentItem(3);
                 break;
         }
         return false;

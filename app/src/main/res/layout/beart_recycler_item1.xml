@@ -26,42 +26,11 @@
             android:scaleType="center"
             android:src="@mipmap/beart_dialogue" />
 
-        <LinearLayout
-            android:id="@+id/beart_recycler_item_linearlayout"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
+        <include
+            layout="@layout/beart_recycler_sytle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/beart_recycler_item_imageviewbody"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/beart_recycler_item_imageviewinterstellar"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@mipmap/beart_interstellar" />
-
-            <ImageView
-                android:id="@+id/beart_recycler_item_imageviewgivethe"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@mipmap/beart_givethe" />
-
-            <ImageView
-                android:id="@+id/beart_recycler_item_imageviewdialogue"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@mipmap/beart_dialogue" />
-
-            <ImageView
-                android:id="@+id/beart_recycler_item_imageviewshare"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@mipmap/beart_share" />
-
-
-        </LinearLayout>
+            android:layout_marginTop="10dp" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
