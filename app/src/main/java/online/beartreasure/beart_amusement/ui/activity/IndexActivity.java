@@ -2,6 +2,7 @@ package online.beartreasure.beart_amusement.ui.activity;
 
 import androidx.annotation.NonNull;
 
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -10,14 +11,21 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import online.beartreasure.beart_amusement.R;
 import online.beartreasure.beart_amusement.base.Beart_BaseActivity;
+import online.beartreasure.beart_amusement.other.ToFragmentListener;
 import online.beartreasure.beart_amusement.ui.fragment.Beart_ClassificationFragment;
 import online.beartreasure.beart_amusement.ui.fragment.Beart_MyFragment;
 import online.beartreasure.beart_amusement.ui.fragment.Beart_NoticeFragment;
 import online.beartreasure.beart_amusement.ui.fragment.Beart_RecommendFragment;
 import online.beartreasure.beart_amusement.ui.fragment.Beart_RecommendIndexFragment;
 
-public class IndexActivity extends Beart_BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class IndexActivity extends Beart_BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener, ToFragmentListener {
     private BottomNavigationView beart_bottomNavigationView;
+
+    private Beart_MyFragment beart_myFragment;
+
+    public Beart_MyFragment getBeart_myFragment() {
+        return beart_myFragment;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,10 +77,27 @@ public class IndexActivity extends Beart_BaseActivity implements BottomNavigatio
                 getSupportFragmentManager().beginTransaction().replace(R.id.beart_framelayout_index, new Beart_NoticeFragment()).commit();
                 break;
             case R.id.beart_menu_bottom_my://我的
-                getSupportFragmentManager().beginTransaction().replace(R.id.beart_framelayout_index, new Beart_MyFragment()).commit();
+
+                beart_myFragment = new Beart_MyFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.beart_framelayout_index,beart_myFragment).commit();
                 break;
         }
 
         return false;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences sp = getSharedPreferences("sp",MODE_PRIVATE);
+        if(beart_myFragment != null){
+            beart_myFragment.getTv_login().setText(sp.getString("username","登录/注册"));
+            beart_myFragment.getTv_login().setEnabled(false);
+        }
+    }
+
+    @Override
+    public void onTypeClick(String message) {
+
     }
 }

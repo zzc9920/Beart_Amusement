@@ -14,6 +14,7 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
 import online.beartreasure.beart_amusement.R;
+import online.beartreasure.beart_amusement.ui.fragment.Beart_MyFragment;
 
 public class Beart_MyApplication extends Application {
     //static 代码段可以防止内存泄露

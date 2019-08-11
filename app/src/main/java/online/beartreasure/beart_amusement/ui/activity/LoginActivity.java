@@ -3,6 +3,7 @@ package online.beartreasure.beart_amusement.ui.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -10,13 +11,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import okhttp3.Call;
 import online.beartreasure.beart_amusement.R;
 import online.beartreasure.beart_amusement.base.Beart_BaseActivity;
+import online.beartreasure.beart_amusement.other.ToFragmentListener;
+import online.beartreasure.beart_amusement.ui.fragment.Beart_MyFragment;
 import online.beartreasure.beart_amusement.utils.Beart_NetworkInterfaceSatinApi;
 
 public class LoginActivity extends Beart_BaseActivity implements View.OnClickListener {
@@ -78,7 +85,32 @@ public class LoginActivity extends Beart_BaseActivity implements View.OnClickLis
                                 @Override
                                 public void onResponse(String response, int id) {
                                     Log.e(TAG, "onResponse: " + response);
-                                    startActivity(new Intent(LoginActivity.this, IndexActivity.class));
+                                    try {
+                                        JSONObject object = new JSONObject(response);
+                                        switch (object.getString("code")){
+                                            case "200":
+                                                finish();
+
+                                                SharedPreferences sp = LoginActivity.this.getSharedPreferences("sp",MODE_PRIVATE);
+                                                SharedPreferences.Editor editor = sp.edit();
+                                                editor.putString("username",beart_username);
+                                                editor.commit();
+
+
+                                                break;
+
+                                            case "404":
+                                                Toast.makeText(LoginActivity.this,"账号或密码有误",Toast.LENGTH_SHORT).show();
+                                                break;
+
+                                            case "500":
+                                                Toast.makeText(LoginActivity.this,"该账号已被冻结",Toast.LENGTH_SHORT).show();
+                                                break;
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
                                 }
                             });
                         }

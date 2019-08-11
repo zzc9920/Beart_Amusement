@@ -29,6 +29,7 @@ import online.beartreasure.beart_amusement.utils.Beart_NetworkInterfaceSatinApi;
 public class Beart_RecommendFragment extends Beart_BaseFragment {
     private RecyclerView beart_recycler_image;
     private SmartRefreshLayout beart_smartrerershlayout_image;
+
     private String beart_return;
     private Beart_SatinApiBean beart_satinapibean;
     private List<Beart_SatinApiBean.DataBean> beart_listsatinapibeandatabean;
