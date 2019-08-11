@@ -51,11 +51,11 @@ public abstract class Beart_BaseActivity extends AppCompatActivity {
         mContext = getApplicationContext();
         //获取当前
         mactivity = this;
-        highApiEffects();
+//        highApiEffects();
         initView();
         initDatas();
         settingView();
-        hideBottomUI();
+//        hideBottomUI();
     }
 
     /**

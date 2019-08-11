@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.wx.goodview.GoodView;
+
 import java.util.List;
 
 import cn.jzvd.JZVideoPlayerStandard;
@@ -30,6 +32,35 @@ public class Beart_RecommendFragment_RecyclerViewAdapter extends RecyclerView.Ad
         mLayoutInflater = LayoutInflater.from(mContext);
     }
 
+    public interface ImageOnClickLinsert {
+        void OnClick(View view, int position);
+    }
+
+    public interface shouchangOnClickLinsert {
+        void OnClick(View view, int position);
+    }
+
+    public interface fenxiangOnClickLinsert {
+        void OnClick(View view, int position);
+    }
+
+    private ImageOnClickLinsert imageOnClickLinsert;
+    private ImageOnClickLinsert shouchangOnClickLinsert;
+    private ImageOnClickLinsert fenxiangOnClickLinsert;
+
+    public void setShouchangOnClickLinsert(ImageOnClickLinsert shouchangOnClickLinsert) {
+        this.shouchangOnClickLinsert = shouchangOnClickLinsert;
+    }
+
+    public void setFenxiangOnClickLinsert(ImageOnClickLinsert fenxiangOnClickLinsert) {
+        this.fenxiangOnClickLinsert = fenxiangOnClickLinsert;
+    }
+
+    public void setImageOnClickLinsert(ImageOnClickLinsert imageOnClickLinsert) {
+
+        this.imageOnClickLinsert = imageOnClickLinsert;
+    }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,10 +70,33 @@ public class Beart_RecommendFragment_RecyclerViewAdapter extends RecyclerView.Ad
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         holder.beart_recycler_item2_JZVideoPlayerStandard.setUp(beart_listsatinapibeandatabean.get(position).getVideouri(), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, beart_listsatinapibeandatabean.get(position).getText());
-        holder.beart_recycler_item2_JZVideoPlayerStandard.startVideo();
         holder.beart_recycler_item2_JZVideoPlayerStandard.startWindowTiny();
 //        loadVideoScreenshot(mContext, beart_listsatinapibeandatabean.get(position).getVideouri(), holder.beart_recycler_item2_JZVideoPlayerStandard.thumbImageView, 1000);
         Glide.with(mContext).load(beart_listsatinapibeandatabean.get(position).getCdn_img()).into(holder.beart_recycler_item2_JZVideoPlayerStandard.thumbImageView);
+        if (imageOnClickLinsert != null) {
+            holder.beart_recycler_item_imageviewgivethe.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    imageOnClickLinsert.OnClick(holder.beart_recycler_item_imageviewgivethe, position);
+                }
+            });
+        }
+        if (shouchangOnClickLinsert != null) {
+            holder.beart_recycler_item_imageviewinterstellar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    shouchangOnClickLinsert.OnClick(holder.beart_recycler_item_imageviewinterstellar, position);
+                }
+            });
+        }
+        if (fenxiangOnClickLinsert != null) {
+            holder.beart_recycler_item_imageviewshare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    fenxiangOnClickLinsert.OnClick(holder.beart_recycler_item_imageviewshare, position);
+                }
+            });
+        }
     }
 
     public int getItemCount() {

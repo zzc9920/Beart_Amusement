@@ -2,6 +2,7 @@ package online.beartreasure.beart_amusement.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -161,12 +162,19 @@ public class RegisterActivity extends Beart_BaseActivity implements View.OnClick
                                                 @Override
                                                 public void run() {
                                                     if (beart_code.getCode().equals("200")) {
-//                                                        T.showAnimSuccessToast(RegisterActivity.this, "注册成功");
-                                                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                                        beartToast("注册成功");
+                                                        new Handler().postDelayed(new Runnable() {
+                                                            public void run() {
+                                                                //execute the task
+                                                                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                                                finish();
+                                                            }
+                                                        }, 2000);
+
                                                     } else if (beart_code.getCode().equals("500")) {
-//                                                        T.showAnimErrorToast(RegisterActivity.this, "账号已冻结");
+                                                        beartToast("账号已冻结");
                                                     } else {
-//                                                        T.showAnimErrorToast(RegisterActivity.this, "账号或者密码错误");
+                                                        beartToast("账号或者密码错误");
                                                     }
                                                 }
                                             });
@@ -182,6 +190,8 @@ public class RegisterActivity extends Beart_BaseActivity implements View.OnClick
                             @Override
                             public void run() {
 //                                T.showAnimSuccessToast(RegisterActivity.this, "验证码已发送");
+                                beartToast("验证码已发送");
+
                             }
                         });
                     } else if (event == SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES) {
@@ -199,7 +209,7 @@ public class RegisterActivity extends Beart_BaseActivity implements View.OnClick
                                 @Override
                                 public void run() {
 //                                    T.showAnimErrorToast(RegisterActivity.this, "验证码错误");
-
+                                    beartToast("验证码错误");
                                 }
                             });
                         }

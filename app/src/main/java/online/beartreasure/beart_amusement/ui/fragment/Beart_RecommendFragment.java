@@ -12,6 +12,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.wx.goodview.GoodView;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -45,6 +46,8 @@ public class Beart_RecommendFragment extends Beart_BaseFragment {
 
     @Override
     public void initView(View beart_layout_view) {
+
+
         Loading();
         bindView(beart_layout_view);
     }
@@ -83,6 +86,29 @@ public class Beart_RecommendFragment extends Beart_BaseFragment {
                     beart_recycler_image.setAdapter(beart_recommendFragment_recyclerViewAdapter);
                     beart_recycler_image.setLayoutManager(new LinearLayoutManager(getActivity()));
                     beart_recycler_image.addItemDecoration(new bear_MyDividerItemDecoration());
+                    final GoodView goodView = new GoodView(getActivity());
+                    beart_recommendFragment_recyclerViewAdapter.setImageOnClickLinsert(new Beart_RecommendFragment_RecyclerViewAdapter.ImageOnClickLinsert() {
+                        @Override
+                        public void OnClick(View view, int position) {
+                            goodView.setText("+1");
+                            goodView.show(view);
+                        }
+                    });
+                    beart_recommendFragment_recyclerViewAdapter.setFenxiangOnClickLinsert(new Beart_RecommendFragment_RecyclerViewAdapter.ImageOnClickLinsert() {
+                        @Override
+                        public void OnClick(View view, int position) {
+
+                            goodView.setText("分享成功");
+                            goodView.show(view);
+                        }
+                    });
+                    beart_recommendFragment_recyclerViewAdapter.setShouchangOnClickLinsert(new Beart_RecommendFragment_RecyclerViewAdapter.ImageOnClickLinsert() {
+                        @Override
+                        public void OnClick(View view, int position) {
+                            goodView.setText("收藏成功");
+                            goodView.show(view);
+                        }
+                    });
                 }
             }
         });
@@ -107,9 +133,10 @@ public class Beart_RecommendFragment extends Beart_BaseFragment {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 refreshLayout.finishRefresh(1000);
-                page++;
+                page += page + 2;
                 link(page);
             }
         });
+
     }
 }

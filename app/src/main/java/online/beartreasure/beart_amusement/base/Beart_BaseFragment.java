@@ -29,7 +29,7 @@ public abstract class Beart_BaseFragment extends Fragment {
         activity = getActivity();
         AlertDialog = new SpotsDialog.Builder()
                 .setContext(getActivity())
-                .setMessage("网络不太好等待哦")
+                .setMessage("加载中！！！！！")
                 .setCancelable(false)
                 .build();
         AlertDialog.show();

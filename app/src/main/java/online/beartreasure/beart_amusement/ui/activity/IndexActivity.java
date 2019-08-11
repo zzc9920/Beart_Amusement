@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -30,6 +31,7 @@ public class IndexActivity extends Beart_BaseActivity implements BottomNavigatio
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportFragmentManager().beginTransaction().replace(R.id.beart_framelayout_index, new Beart_RecommendIndexFragment()).commit();
     }
 
     @Override
@@ -66,20 +68,24 @@ public class IndexActivity extends Beart_BaseActivity implements BottomNavigatio
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        Menu menu = beart_bottomNavigationView.getMenu();
         switch (menuItem.getItemId()) {
             case R.id.beart_menu_bottom_home://主页
                 getSupportFragmentManager().beginTransaction().replace(R.id.beart_framelayout_index, new Beart_RecommendIndexFragment()).commit();
+                menu.getItem(0).setChecked(true);
                 break;
             case R.id.beart_menu_bottom_classification://分类
-                getSupportFragmentManager().beginTransaction().replace(R.id.beart_framelayout_index, new Beart_ClassificationFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.beart_framelayout_index, new Beart_NoticeFragment()).commit();
+                menu.getItem(1).setChecked(true);
                 break;
             case R.id.beart_menu_bottom_notice://消息
                 getSupportFragmentManager().beginTransaction().replace(R.id.beart_framelayout_index, new Beart_NoticeFragment()).commit();
+                menu.getItem(2).setChecked(true);
                 break;
             case R.id.beart_menu_bottom_my://我的
-
                 beart_myFragment = new Beart_MyFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.beart_framelayout_index,beart_myFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.beart_framelayout_index, beart_myFragment).commit();
+                menu.getItem(3).setChecked(true);
                 break;
         }
 
@@ -89,9 +95,9 @@ public class IndexActivity extends Beart_BaseActivity implements BottomNavigatio
     @Override
     protected void onResume() {
         super.onResume();
-        SharedPreferences sp = getSharedPreferences("sp",MODE_PRIVATE);
-        if(beart_myFragment != null){
-            beart_myFragment.getTv_login().setText(sp.getString("username","登录/注册"));
+        SharedPreferences sp = getSharedPreferences("sp", MODE_PRIVATE);
+        if (beart_myFragment != null) {
+            beart_myFragment.getTv_login().setText(sp.getString("username", "登录/注册"));
             beart_myFragment.getTv_login().setEnabled(false);
         }
     }

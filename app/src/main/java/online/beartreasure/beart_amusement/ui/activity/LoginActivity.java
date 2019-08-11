@@ -51,14 +51,13 @@ public class LoginActivity extends Beart_BaseActivity implements View.OnClickLis
         beart_etusername_login = findViewById(R.id.beart_etusername_login);
         beart_etpasswrod_login = findViewById(R.id.beart_etpasswrod_login);
         beart_buttonlogin_login = findViewById(R.id.beart_buttonlogin_login);
-        tv1=findViewById(R.id.tv1);
+        tv1 = findViewById(R.id.tv1);
     }
 
     @Override
     public void initDatas() {
 
     }
-
 
 
     @Override
@@ -87,24 +86,20 @@ public class LoginActivity extends Beart_BaseActivity implements View.OnClickLis
                                     Log.e(TAG, "onResponse: " + response);
                                     try {
                                         JSONObject object = new JSONObject(response);
-                                        switch (object.getString("code")){
+                                        switch (object.getString("code")) {
                                             case "200":
-                                                finish();
-
-                                                SharedPreferences sp = LoginActivity.this.getSharedPreferences("sp",MODE_PRIVATE);
+                                                SharedPreferences sp = LoginActivity.this.getSharedPreferences("sp", MODE_PRIVATE);
                                                 SharedPreferences.Editor editor = sp.edit();
-                                                editor.putString("username",beart_username);
+                                                editor.putString("username", beart_username);
                                                 editor.commit();
-
-
+//                                                startActivity(new Intent(LoginActivity.this, IndexActivity.class));
+                                                finish();
                                                 break;
-
                                             case "404":
-                                                Toast.makeText(LoginActivity.this,"账号或密码有误",Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(LoginActivity.this, "账号或密码有误", Toast.LENGTH_SHORT).show();
                                                 break;
-
                                             case "500":
-                                                Toast.makeText(LoginActivity.this,"该账号已被冻结",Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(LoginActivity.this, "该账号已被冻结", Toast.LENGTH_SHORT).show();
                                                 break;
                                         }
                                     } catch (JSONException e) {
@@ -123,6 +118,7 @@ public class LoginActivity extends Beart_BaseActivity implements View.OnClickLis
                 break;
             case R.id.tv1:
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                finish();
                 break;
         }
     }

@@ -31,6 +31,34 @@ public class Beart_ImagerFragment_RecyclerViewAdapter extends RecyclerView.Adapt
         mLayoutInflater = LayoutInflater.from(mContext);
     }
 
+    public interface ImageOnClickLinsert {
+        void OnClick(View view, int position);
+    }
+
+    public interface shouchangOnClickLinsert {
+        void OnClick(View view, int position);
+    }
+
+    public interface fenxiangOnClickLinsert {
+        void OnClick(View view, int position);
+    }
+
+    private ImageOnClickLinsert imageOnClickLinsert;
+    private shouchangOnClickLinsert shouchangOnClickLinsert;
+    private fenxiangOnClickLinsert fenxiangOnClickLinsert;
+
+    public void setImageOnClickLinsert(ImageOnClickLinsert imageOnClickLinsert) {
+        this.imageOnClickLinsert = imageOnClickLinsert;
+    }
+
+    public void setShouchangOnClickLinsert(Beart_ImagerFragment_RecyclerViewAdapter.shouchangOnClickLinsert shouchangOnClickLinsert) {
+        this.shouchangOnClickLinsert = shouchangOnClickLinsert;
+    }
+
+    public void setFenxiangOnClickLinsert(Beart_ImagerFragment_RecyclerViewAdapter.fenxiangOnClickLinsert fenxiangOnClickLinsert) {
+        this.fenxiangOnClickLinsert = fenxiangOnClickLinsert;
+    }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,19 +66,38 @@ public class Beart_ImagerFragment_RecyclerViewAdapter extends RecyclerView.Adapt
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         if (beart_listsatinapibeandatabean.get(position).getText() != null && !TextUtils.isEmpty(beart_listsatinapibeandatabean.get(position).getText())) {
             holder.beart_recycler_item_textviewtitile.setText(beart_listsatinapibeandatabean.get(position).getText());
         } else {
             holder.beart_recycler_item_textviewtitile.setText("楼主太懒了 都不写标题");
         }
-        if (beart_listsatinapibeandatabean.get(position).getImage0() != null && !TextUtils.isEmpty(beart_listsatinapibeandatabean.get(position).getImage0())) {
-            Glide.with(mContext).load(beart_listsatinapibeandatabean.get(position).getImage0()).into(holder.beart_recycler_item_imageviewbody);
-        }else{
-            Glide.with(mContext).load(beart_listsatinapibeandatabean.get(position).getImage1()).into(holder.beart_recycler_item_imageviewbody);
-        }
+        Glide.with(mContext).load(beart_listsatinapibeandatabean.get(position).getImage0()).into(holder.beart_recycler_item_imageviewbody);
 //        holder.beart_recycler_item2_JZVideoPlayerStandard.setUp(beart_listsatinapibeandatabean.get(position).getVideouri(), JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, beart_listsatinapibeandatabean.get(position).getText());
-
+        if (imageOnClickLinsert != null) {
+            holder.beart_recycler_item_imageviewgivethe.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    imageOnClickLinsert.OnClick(holder.beart_recycler_item_imageviewgivethe, position);
+                }
+            });
+        }
+        if (shouchangOnClickLinsert != null) {
+            holder.beart_recycler_item_imageviewinterstellar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    shouchangOnClickLinsert.OnClick(holder.beart_recycler_item_imageviewinterstellar, position);
+                }
+            });
+        }
+        if (fenxiangOnClickLinsert != null) {
+            holder.beart_recycler_item_imageviewshare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    fenxiangOnClickLinsert.OnClick(holder.beart_recycler_item_imageviewshare, position);
+                }
+            });
+        }
     }
 
     @Override

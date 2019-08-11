@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,9 +15,10 @@
             android:layout_height="80dp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/appicon" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -28,23 +30,24 @@
                     android:id="@+id/tv_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="25sp"
-                    android:textColor="#000"
+                    android:layout_marginLeft="10dp"
                     android:text="登录/注册"
-                    android:layout_marginLeft="10dp"/>
+                    android:textColor="#000"
+                    android:textSize="25sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="欢迎来到木瓜视频"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"/>
+                    android:text="欢迎来到葡萄视频" />
             </LinearLayout>
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_gravity="center"
+                android:src="@mipmap/kuohao" />
         </LinearLayout>
 
         <LinearLayout
@@ -54,65 +57,65 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="0"
-                    android:textSize="25sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="25sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="获赞"
-                    android:textSize="20sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="0"
-                    android:textSize="25sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="25sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="粉丝"
-                    android:textSize="20sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="0"
-                    android:textSize="25sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="25sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="关注"
-                    android:textSize="20sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -123,40 +126,45 @@
             android:padding="10dp">
 
             <TextView
+                android:id="@+id/t1"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/beart_writtenwords"
+                android:gravity="center"
                 android:text="帖子"
-                android:drawableTop="@mipmap/ic_launcher"
-                android:textSize="20sp"
-                android:gravity="center"/>
+                android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/t2"
+
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/beart_edit"
+                android:gravity="center"
                 android:text="评论"
-                android:drawableTop="@mipmap/ic_launcher"
-                android:textSize="20sp"
-                android:gravity="center"/>
+                android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/t3"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/beart_interstellar"
+                android:gravity="center"
                 android:text="收藏"
-                android:drawableTop="@mipmap/ic_launcher"
-                android:textSize="20sp"
-                android:gravity="center"/>
+                android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/t4"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/guankan"
+                android:gravity="center"
                 android:text="观看历史"
-                android:drawableTop="@mipmap/ic_launcher"
-                android:textSize="20sp"
-                android:gravity="center"/>
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -166,29 +174,34 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/t5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="25sp"
+                android:layout_marginTop="15dp"
+                android:drawableRight="@mipmap/kuohao"
+                android:gravity="center_vertical"
                 android:text="意见反馈"
-                android:drawableRight="@mipmap/ic_launcher"
-                android:gravity="center_vertical" />
+                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/tv_kefu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="25sp"
+                android:layout_marginTop="15dp"
+                android:drawableRight="@mipmap/kuohao"
+                android:gravity="center_vertical"
                 android:text="联系客服"
-                android:drawableRight="@mipmap/ic_launcher"
-                android:gravity="center_vertical" />
+                android:textSize="25sp" />
 
             <TextView
+                android:id="@+id/t6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="25sp"
+                android:layout_marginTop="15dp"
+                android:drawableRight="@mipmap/kuohao"
+                android:gravity="center_vertical"
                 android:text="设置"
-                android:drawableRight="@mipmap/ic_launcher"
-                android:gravity="center_vertical" />
+                android:textSize="25sp" />
 
         </LinearLayout>
     </LinearLayout>
